@@ -49,7 +49,7 @@ class VersatileKernel(SequenceKernel):
                 if x[i].similarTo(y[j]):
                     row.append(i)
                     column.append(j)
-                    w=1
+                    w=self.ita
                     if self.char_weights.has_key(x[i]):
                         w*=np.power(self.char_weights[x[i]],2)
                     data.append(w)
