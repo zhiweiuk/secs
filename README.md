@@ -7,7 +7,7 @@ SECS is written in Python and  has the following  features:
 
   - Concordance measure and pattern extractions from a set of preference orderings
 
-  - Similarity measurement for a pair of sequences
+  - Similarity/kernel functions for a pair of sequences
 
 
 ### Citations: please cite the following publications if you like to use the package.
