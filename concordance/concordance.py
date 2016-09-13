@@ -180,7 +180,7 @@ class ConcordanceAndSmallestCoveringSet(Concordance):
 
                 found=False
                 for i in range(len(y)):
-                    if y[i].similarTo(x_j):
+                    if y[i]==x_j:
                         I_k.append(i)
                         found=True
                         break

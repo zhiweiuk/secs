@@ -46,7 +46,7 @@ class VersatileKernel(SequenceKernel):
         data=[]
         for i in range(m):
             for j in range(n):
-                if x[i].similarTo(y[j]):
+                if x[i]==y[j]:
                     row.append(i)
                     column.append(j)
                     w=self.ita
