@@ -16,10 +16,11 @@ class ConcordanceAndSmallestCoveringSet(Concordance):
     by Dr. Zhiwe Lin  at Ulster University
        Prof. Hui Wang at Ulster University
        Prof. Cees H. Elzinga at VU University Amsterdam and NIDI
+       
     The contribution of the work includes:
         1) to measure concordance of preference orderings
         2) to extract meaningful descriptive patterns from preference orderings
-
+	 Paper available at http://arxiv.org/pdf/1609.04722v1.pdf
 
      If you have any questions or want to report bugs,
      please contact Dr. Zhiwei Lin at http://scm.ulster.ac.uk/zhiwei.lin/
