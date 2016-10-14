@@ -5,7 +5,7 @@
 
 SECS is written in Python and  has the following  features:
 
-  - Concordance measure and pattern extractions from a set of preference orderings
+  - Concordance measure and pattern extractions from a set of preference ordering sequences
 
   - Sequences kernel functions
 
