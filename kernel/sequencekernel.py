@@ -2,13 +2,14 @@ import numpy as np
 from scipy import sparse
 import Symbol
 
+
 class Kernel:
     def kernel(self,x,y):
         pass
 
 class SequenceKernel(Kernel):
 
-    def preceeding_index(self,x):
+    def preceding_index(self, x):
             L_x=[-1 for i in range(len(x)) ]
 
             for ind,val in enumerate(x):
@@ -46,12 +47,12 @@ class VersatileKernel(SequenceKernel):
         data=[]
         for i in range(m):
             for j in range(n):
-                if x[i]==y[j]:
+                if  x[i]==y[j]:
                     row.append(i)
                     column.append(j)
-                    w=self.ita
+                    w=1
                     if self.char_weights.has_key(x[i]):
-                        w*=np.power(self.char_weights[x[i]],2)
+                        w*=(self.char_weights[x[i]]**2)
                     data.append(w)
 
         self.M.append(sparse.coo_matrix((data,(row,column)),shape=(m,n)))
@@ -81,7 +82,7 @@ class VersatileKernel(SequenceKernel):
                         gap=(T[0][j]-T[0][i])+(T[1][j]-T[1][i])
                         R=self.M[0].getrow(T[0][i])
 
-                        d+=(self.M[0].data[T_T1[i]]* self.M[longest-1].data[j]* np.power(self.lmb,gap))
+                        d+=(self.M[0].data[T_T1[i]]* self.M[longest-1].data[j]* (self.lmb**gap))
                 if d!=0:
                     row.append(T[0][i])
                     column.append(T[1][i])
@@ -105,7 +106,7 @@ class VersatileKernel(SequenceKernel):
                     break
                 kern+=m.sum()
 
-        return kern
+        return kern,self.M
 
 
 
@@ -120,7 +121,7 @@ class EmbeddingsKernel(SequenceKernel):
     '''
 
     def kernel(self,x,y):
-        D=np.zeros((len(x)+1,len(y)+1))
+        D=[ [ 0 for j  in range(len(y)+1) ] for i  in range(len(x)+1) ]
 
         for i,xi in enumerate(x):
             for j,yj in enumerate(y):
@@ -129,7 +130,7 @@ class EmbeddingsKernel(SequenceKernel):
                 else:
                     D[i+1][j+1]=D[i][j+1]+D[i+1][j]-D[i][j]
 
-        return D[len(x),len(y)]
+        return D[len(x)][len(y)]
 
 
 
@@ -142,22 +143,24 @@ class AllCommonSubsequencesKernel(SequenceKernel):
 
 
     def kernel(self,x,y):
-        D=np.ones((len(x)+1,len(y)+1))
-        L_x=self.preceeding_index(x)
+
+        D=[ [ 1 for j  in range(len(y)+1) ] for i  in range(len(x)+1) ]
+
+        L_x=self.preceding_index(x)
 
         for i,xi in enumerate(x):
             ly=-1
             for j,yj in enumerate(y):
-                D[i+1,j+1]=D[i,j+1]
+                D[i+1][j+1]=D[i][j+1]
 
                 if xi==yj:
                     ly=j
                 if ly!=-1:
-                    D[i+1,j+1]=D[i,j+1]+D[i,ly]
+                    D[i+1][j+1]=D[i][j+1]+D[i][ly]
                     if L_x[i]!=-1:
-                        D[i+1,j+1]-=D[L_x[i],ly]
+                        D[i+1][j+1]-=D[L_x[i]][ly]
 
-        return D[len(x),len(y)]
+        return D[len(x)][len(y)]
 
 if __name__=="__main__":
 
