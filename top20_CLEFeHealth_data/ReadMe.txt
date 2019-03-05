@@ -1,0 +1,5 @@
+This dataset is developed from the first runs of the English queries of the 'CLEF 2015 eHealth Evaluation Lab, Task 2'. In the task, 67 queries were created for 22 medical conditions and 12 teams participated in the information retrieval for the queries. One can refer to the following paper for more information.
+
+Palotti, Jo{\~a}o RM and Zuccon, Guido and Goeuriot, Lorraine and Kelly, Liadh and Hanbury, Allan and Jones, Gareth JF and Lupu, Mihai and Pecina, Pavel, 'CLEF eHealth Evaluation Lab 2015, Task 2: Retrieving Information About Medical Symptoms', CLEF (Working Notes), pp. 1-22, 2015.
+
+This dataset consists of 12 '.dat' files, each of which contains the top-20 rankings obtained by one of the teams for 66 queries. The '.dat' files are named with the names of the teams. Note that the retrieval result for Query 62 is not included in this dataset, since there is a typo with the query and some teams do not have the record for this query. In the '.dat' files, the ranking for each query is given line by line from Query 1 to Query 67 excluding Query 62. 
